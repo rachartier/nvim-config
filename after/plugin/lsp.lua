@@ -43,19 +43,64 @@ for _, sign in ipairs(signs) do
 end
 
 
-local opts = {buffer = bufnr, remap = false}
+local on_attach = function(client, bufnr)
+    local bufopts = {buffer = bufnr, remap = false}
 
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_next, opts)
-vim.keymap.set("n", "<leader>gp", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references, opts)
-vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration,bufopts)
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition,bufopts)
+    vim.keymap.set("n", "K", vim.lsp.buf.hover,bufopts)
+    vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol,bufopts)
+    vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float,bufopts)
+    vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_next,bufopts)
+    vim.keymap.set("n", "<leader>gp", vim.diagnostic.goto_prev,bufopts)
+    -- vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action,bufopts)
+    vim.keymap.set("n", "<leader>ca", "<cmd>CodeActionMenu<cr>",bufopts)
+    vim.keymap.set("n", "<leader>rr", vim.lsp.buf.references,bufopts)
+    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,bufopts)
+    vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help,bufopts)
+
+
+    function nnoremap(rhs, lhs, desc, bufopts)
+        bufopts.desc = desc
+        vim.keymap.set("n", rhs, lhs, bufopts)
+    end
+
+
+    -- nvim-dap
+    nnoremap("<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Set breakpoint", bufopts)
+    nnoremap("<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Set conditional breakpoint", bufopts)
+    nnoremap("<leader>bl", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>", "Set log point", bufopts)
+    nnoremap('<leader>br', "<cmd>lua require'dap'.clear_breakpoints()<cr>", "Clear breakpoints", bufopts)
+    nnoremap('<leader>ba', '<cmd>Telescope dap list_breakpoints<cr>', "List breakpoints", bufopts)
+
+    nnoremap("<leader>dc", "<cmd>lua require'dap'.continue()<cr>", "Continue", bufopts)
+    nnoremap("<leader>dj", "<cmd>lua require'dap'.step_over()<cr>", "Step over", bufopts)
+    nnoremap("<leader>dk", "<cmd>lua require'dap'.step_into()<cr>", "Step into", bufopts)
+    nnoremap("<leader>do", "<cmd>lua require'dap'.step_out()<cr>", "Step out", bufopts)
+    nnoremap('<leader>dd', "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect", bufopts)
+    nnoremap('<leader>dt', "<cmd>lua require'dap'.terminate()<cr>", "Terminate", bufopts)
+    nnoremap("<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", "Open REPL", bufopts)
+    nnoremap("<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", "Run last", bufopts)
+    nnoremap('<leader>di', function() require"dap.ui.widgets".hover() end, "Variables", bufopts)
+    nnoremap('<leader>ds', function() local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes) end, "Scopes", bufopts)
+    nnoremap('<leader>df', '<cmd>Telescope dap frames<cr>', "List frames", bufopts)
+    nnoremap('<leader>dh', '<cmd>Telescope dap commands<cr>', "List commands", bufopts)
+end
+
+
+local _start_client = vim.lsp.start_client
+vim.lsp.start_client = function(config)
+  if config.on_attach == nil then
+    config.on_attach = on_attach
+  else
+    local _on_attach = config.on_attach
+    config.on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      _on_attach(client, bufnr)
+    end
+  end
+  return _start_client(config)
+end
 
 lsp.setup()
 
@@ -97,12 +142,11 @@ require("cmp").setup.cmdline(":", {
 })
 
 
-
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig')['pyright'].setup {
     capabilities = capabilities,
+    on_attach = on_attach,
 }
 
 

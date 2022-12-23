@@ -79,11 +79,18 @@ local config = {
     }
 }
 
+config['init_options'] = {
+  bundles = {
+    vim.fn.glob("/opt/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1)
+  };
+}
+
 config["on_attach"] = function(client, bufnr)
 	local _, _ = pcall(vim.lsp.codelens.refresh)
-	-- require("jdtls.dap").setup_dap_main_class_configs()
-	-- require("jdtls").setup_dap({ hotcodereplace = "auto" })
-    require("rachartier").on_attach(client, bufnr)
+	require("jdtls.dap").setup_dap_main_class_configs()
+	require("jdtls").setup_dap({ hotcodereplace = "auto" })
+    require("plugin.lsp").on_attach(client, bufnr)
+    require('rachartier.lsp_keybindings').on_attach(client, bufnr)
 	require("lvim.lsp").on_attach(client, bufnr)
 end
 

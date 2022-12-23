@@ -12,7 +12,10 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         -- or                            , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-telescope/telescope-dap.nvim'}
+        }
     }
 
     use({
@@ -74,6 +77,13 @@ return require('packer').startup(function(use)
     }
 
     use ('mfussenegger/nvim-jdtls')
+    use({
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+    })
+    use ('mfussenegger/nvim-dap')
+    use ({ "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} })
+    use ({'theHamsta/nvim-dap-virtual-text'})
 end)
 
 

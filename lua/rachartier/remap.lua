@@ -44,4 +44,5 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>", { silent = true })
 vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<cr>", { silent = true })
+vim.keymap.set("n", "<Esc><Esc>", "<cmd>:q<cr>", { silent = true })
 
