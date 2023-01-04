@@ -1,6 +1,8 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.api.nvim_command('filetype plugin on')
+
 vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.relativenumber = true

@@ -1,4 +1,4 @@
-
+require('dap.ext.vscode').load_launchjs()
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = '/home/rachartier/.cache/workspace-root/' .. project_name
@@ -96,25 +96,3 @@ end
 
 require('jdtls').start_or_attach(config)
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = "*.java",
-    callback = function()
-		local _, _ = pcall(vim.lsp.codelens.refresh)
-        local params = vim.lsp.util.make_range_params()
-        local bufnr = vim.api.nvim_get_current_buf()
-        params.context = {
-            diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr),
-        }
-        local result, err = vim.lsp.buf_request_sync(0, "java/organizeImports", params)
-
-        if err then
-            print("Error on organize imports: " .. err)
-            return
-        end
-
-        result = vim.tbl_values(result)
-        if result and result[1].result then
-            vim.lsp.util.apply_workspace_edit(result[1].result, "utf-16")
-        end
-    end,
-})

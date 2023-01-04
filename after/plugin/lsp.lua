@@ -67,16 +67,16 @@ local on_attach = function(client, bufnr)
 
 
     -- nvim-dap
-    nnoremap("<leader>bb", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Set breakpoint", bufopts)
+    nnoremap("<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Set breakpoint", bufopts)
     nnoremap("<leader>bc", "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", "Set conditional breakpoint", bufopts)
     nnoremap("<leader>bl", "<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>", "Set log point", bufopts)
     nnoremap('<leader>br', "<cmd>lua require'dap'.clear_breakpoints()<cr>", "Clear breakpoints", bufopts)
     nnoremap('<leader>ba', '<cmd>Telescope dap list_breakpoints<cr>', "List breakpoints", bufopts)
 
-    nnoremap("<leader>dc", "<cmd>lua require'dap'.continue()<cr>", "Continue", bufopts)
-    nnoremap("<leader>dj", "<cmd>lua require'dap'.step_over()<cr>", "Step over", bufopts)
-    nnoremap("<leader>dk", "<cmd>lua require'dap'.step_into()<cr>", "Step into", bufopts)
-    nnoremap("<leader>do", "<cmd>lua require'dap'.step_out()<cr>", "Step out", bufopts)
+    nnoremap("<F5>", "<cmd>lua require'dap'.continue()<cr>", "Continue", bufopts)
+    nnoremap("<F10>", "<cmd>lua require'dap'.step_over()<cr>", "Step over", bufopts)
+    nnoremap("<F11>", "<cmd>lua require'dap'.step_into()<cr>", "Step into", bufopts)
+    nnoremap("<S-F11>", "<cmd>lua require'dap'.step_out()<cr>", "Step out", bufopts)
     nnoremap('<leader>dd', "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect", bufopts)
     nnoremap('<leader>dt', "<cmd>lua require'dap'.terminate()<cr>", "Terminate", bufopts)
     nnoremap("<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", "Open REPL", bufopts)
@@ -149,5 +149,9 @@ require('lspconfig')['pyright'].setup {
     on_attach = on_attach,
 }
 
+require('lspconfig')['jsonc'].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
 
 
