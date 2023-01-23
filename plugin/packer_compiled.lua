@@ -202,6 +202,11 @@ _G.packer_plugins = {
     path = "/home/rachartier/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-remote-containers"] = {
+    loaded = true,
+    path = "/home/rachartier/.local/share/nvim/site/pack/packer/start/nvim-remote-containers",
+    url = "https://github.com/jamestthompson3/nvim-remote-containers"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/rachartier/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
@@ -252,6 +257,11 @@ _G.packer_plugins = {
     path = "/home/rachartier/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
+  ["twilight.nvim"] = {
+    loaded = true,
+    path = "/home/rachartier/.local/share/nvim/site/pack/packer/start/twilight.nvim",
+    url = "https://github.com/folke/twilight.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/home/rachartier/.local/share/nvim/site/pack/packer/start/undotree",
@@ -277,7 +287,7 @@ pcall(vim.api.nvim_create_user_command, 'CodeActionMenu', function(cmdargs)
           require('packer.load')({'nvim-code-action-menu'}, { cmd = 'CodeActionMenu', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'nvim-code-action-menu'}, { cmd = 'CodeActionMenu' }, _G.packer_plugins)
+          require('packer.load')({'nvim-code-action-menu'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('CodeActionMenu ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)

@@ -90,16 +90,16 @@ end
 
 local _start_client = vim.lsp.start_client
 vim.lsp.start_client = function(config)
-  if config.on_attach == nil then
-    config.on_attach = on_attach
-  else
-    local _on_attach = config.on_attach
-    config.on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      _on_attach(client, bufnr)
+    if config.on_attach == nil then
+        config.on_attach = on_attach
+    else
+        local _on_attach = config.on_attach
+        config.on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+            _on_attach(client, bufnr)
+        end
     end
-  end
-  return _start_client(config)
+    return _start_client(config)
 end
 
 lsp.setup()
@@ -142,16 +142,44 @@ require("cmp").setup.cmdline(":", {
 })
 
 
+local configs = require 'lspconfig/configs'
+local util = require 'lspconfig/util'
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+
+local path = util.path
+
+local function get_python_path(workspace)
+    -- Use activated virtualenv.
+    if vim.env.VIRTUAL_ENV then
+        return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+    end
+
+    -- Find and use virtualenv in workspace directory.
+    for _, pattern in ipairs({'*', '.*'}) do
+        local match = vim.fn.glob(path.join(workspace, pattern, 'pyvenv.cfg'))
+        if match ~= '' then
+            return path.join(path.dirname(match), 'bin', 'python')
+        end
+    end
+
+    -- Fallback to system Python.
+    return exepath('python3') or exepath('python') or 'python'
+end
+
+
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig')['pyright'].setup {
+    before_init = function(_, config)
+        config.settings.python.pythonPath = get_python_path(config.root_dir)
+    end,
+    capabilities = capabilities,
+    on_attach = on_attach,
+    root_dir = util.root_pattern('pyright.json')
+}
+
+require('lspconfig')['clangd'].setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }
-
-require('lspconfig')['jsonc'].setup {
-    capabilities = capabilities,
-    on_attach = on_attach,
-}
-
 

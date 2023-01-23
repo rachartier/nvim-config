@@ -1,89 +1,35 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+require("plugins")
+require("remap")
+require("set")
 
--- Only required if you have packer configured as `opt`
-vim.cmd.packadd('packer.nvim')
+local augroup = vim.api.nvim_create_augroup
+local Group = augroup('Group', {})
 
-require 'rachartier'
+local autocmd = vim.api.nvim_create_autocmd
+local yank_group = augroup('HighlightYank', {})
 
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+function R(name)
+    require("plenary.reload").reload_module(name)
+end
 
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
-        requires = {
-            {'nvim-lua/plenary.nvim'},
-            {'nvim-telescope/telescope-dap.nvim'}
-        }
-    }
+autocmd('TextYankPost', {
+    group = yank_group,
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
+    end,
+})
 
-    use({
-        'navarasu/onedark.nvim',
-        as = "onedark",
-    })
+autocmd({"BufWritePre"}, {
+    group = Group,
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
+})
 
-    use({'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'})
-    use('nvim-treesitter/playground')
-    use('theprimeagen/harpoon')
-    use('mbbill/undotree')
-    use('tpope/vim-fugitive')
-
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        requires = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},
-            {'williamboman/mason.nvim'},
-            {'williamboman/mason-lspconfig.nvim'},
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'saadparwaiz1/cmp_luasnip'},
-            {'hrsh7th/cmp-nvim-lsp'},
-            {'hrsh7th/cmp-nvim-lua'},
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},
-            {'rafamadriz/friendly-snippets'},
-        }
-    }
-
-    use("folke/zen-mode.nvim")
-    -- use("github/copilot.vim")
-
-    use {
-        'nvim-tree/nvim-tree.lua',
-        requires = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-
-        use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
-    }
-
-    use {
-        "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons"
-    }
-
-    use('kdheepak/lazygit.nvim')
-    use('onsails/lspkind.nvim')
-    use('lukas-reineke/indent-blankline.nvim')
-    use {
-        'kosayoda/nvim-lightbulb',
-        requires = 'antoinemadec/FixCursorHold.nvim',
-    }
-
-    use ('mfussenegger/nvim-jdtls')
-    use({
-        'weilbith/nvim-code-action-menu',
-        cmd = 'CodeActionMenu',
-    })
-    use ('mfussenegger/nvim-dap')
-    use ({ "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} })
-    use ('theHamsta/nvim-dap-virtual-text')
-    use ('https://codeberg.org/esensar/nvim-dev-container')
-end)
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
 
