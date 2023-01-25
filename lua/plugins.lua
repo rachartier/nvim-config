@@ -10,9 +10,8 @@ return require('lazy').setup({
     },
     {
         'navarasu/onedark.nvim',
-        as = "onedark",
     },
-    {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'},
+    {'nvim-treesitter/nvim-treesitter'},
     {'nvim-treesitter/playground'},
     {'theprimeagen/harpoon'},
     {'mbbill/undotree'},
@@ -55,7 +54,7 @@ return require('lazy').setup({
     {
         "folke/trouble.nvim",
         dependencies = {
-            "kyazdani42/nvim-web-devicons"
+            "nvim-tree/nvim-web-devicons"
         }
     },
 

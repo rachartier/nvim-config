@@ -175,10 +175,30 @@ require('lspconfig')['pyright'].setup {
     end,
     capabilities = capabilities,
     on_attach = on_attach,
-    root_dir = util.root_pattern('pyright.json')
+    root_dir = util.root_pattern('pyrightconfig.json')
 }
 
 require('lspconfig')['clangd'].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+require('lspconfig')['bashls'].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+require('lspconfig')['jsonls'].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+require('lspconfig')['vimls'].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
+require('lspconfig')['sumneko_lua'].setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }
