@@ -90,5 +90,7 @@ return require('lazy').setup({
             "rcarriga/nvim-notify",
         }
     },
+    {"goolord/alpha-nvim",},
+    {"kylechui/nvim-surround"}
 })
 
