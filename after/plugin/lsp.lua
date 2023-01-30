@@ -85,6 +85,8 @@ local on_attach = function(client, bufnr)
     nnoremap('<leader>ds', function() local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes) end, "Scopes", bufopts)
     nnoremap('<leader>df', '<cmd>Telescope dap frames<cr>', "List frames", bufopts)
     nnoremap('<leader>dh', '<cmd>Telescope dap commands<cr>', "List commands", bufopts)
+
+    require 'illuminate'.on_attach(client)
 end
 
 
