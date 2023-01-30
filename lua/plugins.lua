@@ -88,6 +88,7 @@ return require('lazy').setup({
         dependencies = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
+            "lewis6991/gitsigns.nvim"
         }
     },
     {"goolord/alpha-nvim",},
