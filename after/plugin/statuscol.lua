@@ -30,4 +30,3 @@ local cfg = {
 }
 
 require("statuscol").setup(cfg)
-require('gitsigns').setup()
