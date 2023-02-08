@@ -94,6 +94,7 @@ return require('lazy').setup({
     {"goolord/alpha-nvim",},
     {"kylechui/nvim-surround"},
     {'kosayoda/nvim-lightbulb'},
-    {'RRethy/vim-illuminate'}
+    {'RRethy/vim-illuminate'},
+    {'windwp/nvim-spectre'}
 })
 
