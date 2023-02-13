@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -49,3 +50,4 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 require("theme")
+vim.cmd.colorscheme "catppuccin"
