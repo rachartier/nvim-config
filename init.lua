@@ -50,4 +50,3 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 require("theme")
-vim.cmd.colorscheme "catppuccin"

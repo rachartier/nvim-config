@@ -98,7 +98,6 @@ return require('lazy').setup({
     {'RRethy/vim-illuminate'},
     {'windwp/nvim-spectre'},
     {'nvim-lualine/lualine.nvim'},
-    {'dense-analysis/neural'},
     {'elpiloto/significant.nvim'},
     {
         'catppuccin/nvim',
