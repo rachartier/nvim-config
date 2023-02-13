@@ -5,3 +5,5 @@ require('neural').setup({
         },
     },
 })
+
+vim.keymap.set("n", "<leader>n", "<cmd>Neural<cr>", { silent = true })
