@@ -1,6 +1,5 @@
 require("bufferline").setup{
     options = {
-        indicator = {
-        },
-    },
+        separator_style = 'slant'
+    }
 }

@@ -25,5 +25,5 @@ nvim_tree.setup{
         end
     }
 }
-
+vim.cmd[[hi NvimTreeNormal guibg=NONE ctermbg=NONE]]
 vim.keymap.set("n", "<leader>te", "<cmd>NvimTreeToggle<CR>", { silent = true })

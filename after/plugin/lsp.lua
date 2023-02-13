@@ -2,16 +2,6 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 -- Fix Undefined global 'vim'
-lsp.configure('sumneko_lua', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -200,8 +190,9 @@ require('lspconfig')['vimls'].setup {
     on_attach = on_attach,
 }
 
-require('lspconfig')['sumneko_lua'].setup {
+require('lspconfig')['lua_ls'].setup {
     capabilities = capabilities,
     on_attach = on_attach,
 }
+
 
