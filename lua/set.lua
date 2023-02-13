@@ -31,5 +31,5 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-
-require('onedark').load()
+vim.api.nvim_set_hl(0, "FloatBorder", {bg="None"})
+vim.api.nvim_set_hl(0, "NormalFloat", {bg="None"})

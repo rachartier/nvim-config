@@ -10,6 +10,7 @@ return require('lazy').setup({
     },
     {
         'navarasu/onedark.nvim',
+        priority = 1000
     },
     {'nvim-treesitter/nvim-treesitter'},
     {'nvim-treesitter/playground'},
@@ -95,6 +96,13 @@ return require('lazy').setup({
     {"kylechui/nvim-surround"},
     {'kosayoda/nvim-lightbulb'},
     {'RRethy/vim-illuminate'},
-    {'windwp/nvim-spectre'}
+    {'windwp/nvim-spectre'},
+    {'nvim-lualine/lualine.nvim'},
+    {'dense-analysis/neural'},
+    {'elpiloto/significant.nvim'},
+    {
+        'catppuccin/nvim',
+        priority = 1000
+    }
 })
 
