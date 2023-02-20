@@ -14,7 +14,7 @@ return require('lazy').setup({
     },
     {'nvim-treesitter/nvim-treesitter'},
     {'nvim-treesitter/playground'},
-    {'theprimeagen/harpoon'},
+    {'nvim-tree/nvim-tree.lua'},
     {'mbbill/undotree'},
     {'tpope/vim-fugitive'},
     {
@@ -37,14 +37,6 @@ return require('lazy').setup({
             'L3MON4D3/LuaSnip',
             'rafamadriz/friendly-snippets',
         }
-    },
-    {"folke/zen-mode.nvim"},
-    {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons', -- optional, for file icons
-        },
-
     },
     {
         'akinsho/bufferline.nvim',
@@ -80,9 +72,6 @@ return require('lazy').setup({
         }
     },
     {'theHamsta/nvim-dap-virtual-text'},
-    {'https://codeberg.org/esensar/nvim-dev-container'},
-    {'jamestthompson3/nvim-remote-containers'},
-    {"folke/twilight.nvim"},
     {"luukvbaal/statuscol.nvim"},
     {
         "folke/noice.nvim",
@@ -102,6 +91,6 @@ return require('lazy').setup({
     {
         'catppuccin/nvim',
         priority = 1000
-    }
+    },
 })
 

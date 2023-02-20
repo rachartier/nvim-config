@@ -195,4 +195,9 @@ require('lspconfig')['lua_ls'].setup {
     on_attach = on_attach,
 }
 
+require('lspconfig')['remark_ls'].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
+
 
