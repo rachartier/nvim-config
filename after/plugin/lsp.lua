@@ -1,6 +1,5 @@
 local lsp = require("lsp-zero")
 lsp.preset("recommended")
-
 -- Fix Undefined global 'vim'
 
 local cmp = require('cmp')

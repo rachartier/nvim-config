@@ -82,7 +82,6 @@ return require('lazy').setup({
         }
     },
     {"goolord/alpha-nvim",},
-    {"kylechui/nvim-surround"},
     {'kosayoda/nvim-lightbulb'},
     {'RRethy/vim-illuminate'},
     {'windwp/nvim-spectre'},
@@ -92,5 +91,7 @@ return require('lazy').setup({
         'catppuccin/nvim',
         priority = 1000
     },
+    { 'echasnovski/mini.indentscope', version = false },
+    { 'echasnovski/mini.surround', version = false },
 })
 
