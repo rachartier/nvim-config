@@ -48,12 +48,10 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,bufopts)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help,bufopts)
 
-
     function nnoremap(rhs, lhs, desc, bufopts)
         bufopts.desc = desc
         vim.keymap.set("n", rhs, lhs, bufopts)
     end
-
 
     -- nvim-dap
     nnoremap("<F9>", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Set breakpoint", bufopts)
