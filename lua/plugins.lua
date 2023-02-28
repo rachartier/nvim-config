@@ -13,7 +13,6 @@ return require('lazy').setup({
         priority = 1000
     },
     {'nvim-treesitter/nvim-treesitter'},
-    {'nvim-treesitter/playground'},
     {'nvim-tree/nvim-tree.lua'},
     {'mbbill/undotree'},
     {'tpope/vim-fugitive'},
@@ -93,5 +92,6 @@ return require('lazy').setup({
     },
     { 'echasnovski/mini.indentscope', version = false },
     { 'echasnovski/mini.surround', version = false },
+    { 'numToStr/FTerm.nvim' },
 })
 
