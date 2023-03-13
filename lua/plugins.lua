@@ -82,7 +82,6 @@ return require('lazy').setup({
     },
     {"goolord/alpha-nvim",},
     {'kosayoda/nvim-lightbulb'},
-    {'RRethy/vim-illuminate'},
     {'windwp/nvim-spectre'},
     {'nvim-lualine/lualine.nvim'},
     {'elpiloto/significant.nvim'},
@@ -90,8 +89,19 @@ return require('lazy').setup({
         'catppuccin/nvim',
         priority = 1000
     },
+    {'NTBBloodbath/sweetie.nvim', priority=1000},
     { 'echasnovski/mini.indentscope', version = false },
     { 'echasnovski/mini.surround', version = false },
     { 'numToStr/FTerm.nvim' },
+    {
+        "utilyre/barbecue.nvim",
+        name = "barbecue",
+        version = "*",
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "nvim-tree/nvim-web-devicons", -- optional dependency
+        },
+    },
+    { "RRethy/vim-illuminate" },
 })
 
