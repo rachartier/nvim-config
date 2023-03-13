@@ -12,10 +12,10 @@ return require('lazy').setup({
         'navarasu/onedark.nvim',
         priority = 1000
     },
-    {'nvim-treesitter/nvim-treesitter'},
-    {'nvim-tree/nvim-tree.lua'},
-    {'mbbill/undotree'},
-    {'tpope/vim-fugitive'},
+    { 'nvim-treesitter/nvim-treesitter' },
+    { 'nvim-tree/nvim-tree.lua' },
+    { 'mbbill/undotree' },
+    { 'tpope/vim-fugitive' },
     {
         'VonHeikemen/lsp-zero.nvim',
         dependencies = {
@@ -50,28 +50,28 @@ return require('lazy').setup({
         }
     },
 
-    {'kdheepak/lazygit.nvim'},
-    {'onsails/lspkind.nvim'},
-    {'lukas-reineke/indent-blankline.nvim'},
+    { 'kdheepak/lazygit.nvim' },
+    { 'onsails/lspkind.nvim' },
+    { 'lukas-reineke/indent-blankline.nvim' },
     {
         'kosayoda/nvim-lightbulb',
         dependencies = 'antoinemadec/FixCursorHold.nvim',
     },
 
-    {'mfussenegger/nvim-jdtls'},
+    { 'mfussenegger/nvim-jdtls' },
     {
         'weilbith/nvim-code-action-menu',
         cmd = 'CodeActionMenu',
     },
-    {'mfussenegger/nvim-dap'},
+    { 'mfussenegger/nvim-dap' },
     {
         "rcarriga/nvim-dap-ui",
         dependencies = {
             "mfussenegger/nvim-dap"
         }
     },
-    {'theHamsta/nvim-dap-virtual-text'},
-    {"luukvbaal/statuscol.nvim"},
+    { 'theHamsta/nvim-dap-virtual-text' },
+    { "luukvbaal/statuscol.nvim" },
     {
         "folke/noice.nvim",
         dependencies = {
@@ -80,18 +80,17 @@ return require('lazy').setup({
             "lewis6991/gitsigns.nvim"
         }
     },
-    {"goolord/alpha-nvim",},
-    {'kosayoda/nvim-lightbulb'},
-    {'windwp/nvim-spectre'},
-    {'nvim-lualine/lualine.nvim'},
-    {'elpiloto/significant.nvim'},
+    { "goolord/alpha-nvim", },
+    { 'windwp/nvim-spectre' },
+    { 'nvim-lualine/lualine.nvim' },
+    { 'elpiloto/significant.nvim' },
     {
         'catppuccin/nvim',
         priority = 1000
     },
-    {'NTBBloodbath/sweetie.nvim', priority=1000},
+    { 'NTBBloodbath/sweetie.nvim',    priority = 1000 },
     { 'echasnovski/mini.indentscope', version = false },
-    { 'echasnovski/mini.surround', version = false },
+    { 'echasnovski/mini.surround',    version = false },
     { 'numToStr/FTerm.nvim' },
     {
         "utilyre/barbecue.nvim",
@@ -103,5 +102,5 @@ return require('lazy').setup({
         },
     },
     { "RRethy/vim-illuminate" },
+    { 'uga-rosa/ccc.nvim' }
 })
-

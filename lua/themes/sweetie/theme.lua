@@ -53,3 +53,5 @@ end
 --vim.api.nvim_set_hl(0, "IlluminatedWordText", IlluminateColor)
 --vim.api.nvim_set_hl(0, "IlluminatedWordWrite", IlluminateColor)
 --vim.api.nvim_set_hl(0, "IlluminatedWordRead", IlluminateColor)
+vim.api.nvim_set_hl(0, "Cursor", {bg = colors.fg_alt})
+--
