@@ -106,8 +106,9 @@ return require('lazy').setup({
     {
         "vimwiki/vimwiki",
         dependencies = {
-            "ElPiloto/telescope-vimwiki.nvim"
+            "ElPiloto/telescope-vimwiki.nvim",
+            "michal-h21/vimwiki-sync"
         }
     },
-    {"jiangmiao/auto-pairs"}
+    {"jiangmiao/auto-pairs"},
 })
