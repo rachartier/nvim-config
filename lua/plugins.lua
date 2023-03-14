@@ -102,5 +102,11 @@ return require('lazy').setup({
         },
     },
     { "RRethy/vim-illuminate" },
-    { 'uga-rosa/ccc.nvim' }
+    { 'uga-rosa/ccc.nvim' },
+    {
+        "vimwiki/vimwiki",
+        dependencies = {
+            "ElPiloto/telescope-vimwiki.nvim"
+        }
+    }
 })
