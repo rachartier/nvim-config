@@ -108,5 +108,6 @@ return require('lazy').setup({
         dependencies = {
             "ElPiloto/telescope-vimwiki.nvim"
         }
-    }
+    },
+    {"jiangmiao/auto-pairs"}
 })

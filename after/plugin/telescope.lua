@@ -10,7 +10,7 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fw', builtin.grep_string, {})
 
-vim.keymap.set('n', '<leader>wg', require('telescope').extensions.vm.live_grep, {})
-vim.keymap.set('n', '<leader>wf', require('telescope').extensions.vm.vimwiki, {})
+vim.keymap.set('n', '<leader>wg', require('telescope').extensions.vimwiki.live_grep, {})
+vim.keymap.set('n', '<leader>wf', require('telescope').extensions.vimwiki.vimwiki, {})
 
 
